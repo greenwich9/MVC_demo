@@ -1,6 +1,7 @@
 ﻿@using WebApplicationTest.ViewModels
 @model EmployeeListViewModel
 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,12 +9,17 @@
     <title>MyView</title>
 </head>
 <body>
-    <div style="text-align:right"> Hello, @Model.UserName
-    <a href="/Authentication/Logout">Logout</a></div>
-    <a href="/Employee/AddNew">Add New</a>
+    <div style="text-align:right">
+        Hello, @Model.UserName
+        <a href="/Authentication/Logout">Logout</a>
+        
+    </div>
     <hr />
+    @{
+        Html.RenderAction("GetAddNewLink");
+    }
     <div>
-        <table>
+        <table border="1">
             <tr>
                 <th>Employee Name</th>
                 <th>Salary</th>

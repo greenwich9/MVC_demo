@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using WebApplicationTest.ViewModels;
 using WebApplicationTest.BusinessLayer;
 using WebApplicationTest.Models;
+using WebApplicationTest.Filter;
 
 namespace WebApplicationTest.Controllers
 {
@@ -52,12 +53,15 @@ namespace WebApplicationTest.Controllers
             return View("Index", employeeListViewModel);
 
         }
+
+        [AdminFilter]
         public ActionResult AddNew()
         {
             return View("CreateEmployee", new CreateEmployeeViewModel());
         }
 
         [HttpPost]
+        [AdminFilter]
         public ActionResult SaveEmployee(Employee e, string BtnSubmit)
         {
             switch (BtnSubmit)
@@ -88,6 +92,20 @@ namespace WebApplicationTest.Controllers
                     return RedirectToAction("Index");
             }
             return new EmptyResult();
+        }
+
+
+        [ChildActionOnly]
+        public ActionResult GetAddNewLink()
+        {
+            if (Convert.ToBoolean(Session["IsAdmin"]))
+            {
+                return PartialView("AddNewLink");
+            }
+            else
+            {
+                return new EmptyResult();
+            }
         }
     }
 }
