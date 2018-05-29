@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using WebApplicationTest.Models;
 
-namespace WebApplicationTest.ViewModels
+namespace WebApplicationTest.ViewModels 
 {
-    public class CreateEmployeeViewModel
+    public class CreateEmployeeViewModel : BaseViewModel
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }

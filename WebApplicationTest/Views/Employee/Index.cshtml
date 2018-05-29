@@ -1,40 +1,51 @@
 ﻿@using WebApplicationTest.ViewModels
 @model EmployeeListViewModel
 
+@{
+    Layout = "~/Views/Shared/MyLayout.cshtml";
+}
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>MyView</title>
-</head>
-<body>
-    <div style="text-align:right">
-        Hello, @Model.UserName
-        <a href="/Authentication/Logout">Logout</a>
-        
-    </div>
-    <hr />
+
+@section TitleSection{
+    MyView
+}
+
+@section ContentBody{
+<div>
     @{
         Html.RenderAction("GetAddNewLink");
     }
+
     <div>
+        <form action="/Employee/Search" method="post">
+            <select name="Event">
+                <option value="deferred">deferred</option>
+                <option value="processed">processed</option>
+                <option value="delivered">delivered</option>
+                <option value="open">open</option>
+                <option value="click">click</option>
+            </select>
+
+            <input type="submit" name="BtnSubmit" class="btn btn-primary" value="Submit" />
+        </form>
+    </div>
         <table border="1">
             <tr>
-                <th>Employee Name</th>
-                <th>Salary</th>
+                <th>Id</th>
+                <th>Email</th>
+                <th>Event1</th>
+                <th>timeStamp</th>
             </tr>
             @foreach (EmployeeViewModel item in Model.Employees)
             {
-                <tr>
-                    <td>@item.EmployeeName</td>
-                    <td style="background-color:@item.SalaryColor">@item.Salary</td>
-                </tr>
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.email</td>
+                <td>@item.event1</td>
+                <td>@item.timestamp</td>
+            </tr>
             }
         </table>
-        @{
-            Html.RenderPartial("Footer", Model.FooterData);
-        }
+
     </div>
-</body>
-</html>
+}

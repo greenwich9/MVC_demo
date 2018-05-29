@@ -9,15 +9,15 @@ namespace WebApplicationTest.Models
     public class Employee
     {
         [Key]
-        public int EmployeeId { get; set; }
+        public string Id { get; set; }
 
-        [Required(ErrorMessage ="can't be empty")]
-        public string FirstName { get; set; }
 
-        [Required(ErrorMessage = "can't be empty")]
-        public string LastName { get; set; }
+        public string event1 { get; set; }
+
+ 
+        public string timestamp { get; set; }
       
-    public int? Salary { get; set; }
+        public string email { get; set; }
       
     }
 }

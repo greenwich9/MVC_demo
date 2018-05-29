@@ -31,24 +31,15 @@ namespace WebApplicationTest.Controllers
             {
                 EmployeeViewModel empViewModel =
                       new EmployeeViewModel();
-                
-                empViewModel.EmployeeName =
-                      emp.FirstName + " " + emp.LastName;
-               
-                empViewModel.Salary = emp.Salary.ToString();
-                if (emp.Salary > 15000)
-                {
-                    empViewModel.SalaryColor = "yellow";
-                }
-                else
-                {
-                    empViewModel.SalaryColor = "green";
-                }
+                empViewModel.Id = emp.Id;
+                empViewModel.email = emp.email;
+                empViewModel.event1 = emp.event1;
+                empViewModel.timestamp = emp.timestamp;
                 empViewModels.Add(empViewModel);
             }
             employeeListViewModel.Employees = empViewModels;
             employeeListViewModel.FooterData = new FooterViewModel();
-            employeeListViewModel.FooterData.CompanyName = "StepByStepSchools";//Can be set to dynamic value
+            employeeListViewModel.FooterData.CompanyName = "DYD Creative Solution";//Can be set to dynamic value
             employeeListViewModel.FooterData.Year = DateTime.Now.Year.ToString();
             return View("Index", employeeListViewModel);
 
@@ -57,42 +48,14 @@ namespace WebApplicationTest.Controllers
         [AdminFilter]
         public ActionResult AddNew()
         {
-            return View("CreateEmployee", new CreateEmployeeViewModel());
+            CreateEmployeeViewModel employeeListViewModel = new CreateEmployeeViewModel();
+            employeeListViewModel.FooterData = new FooterViewModel();
+            employeeListViewModel.FooterData.CompanyName = "StepByStepSchools";//Can be set to dynamic value
+            employeeListViewModel.FooterData.Year = DateTime.Now.Year.ToString();
+            employeeListViewModel.UserName = User.Identity.Name; //New Line
+            return View("CreateEmployee", employeeListViewModel);
         }
 
-        [HttpPost]
-        [AdminFilter]
-        public ActionResult SaveEmployee(Employee e, string BtnSubmit)
-        {
-            switch (BtnSubmit)
-            {
-                case "Save Employee":
-                    if (ModelState.IsValid)
-                    {
-                        EmployeeBusinessLayer empBal = new EmployeeBusinessLayer();
-                        empBal.SaveEmployee(e);
-                        return RedirectToAction("Index");
-                    }
-                    else
-                    {
-                        CreateEmployeeViewModel vm = new CreateEmployeeViewModel();
-                        vm.FirstName = e.FirstName;
-                        vm.LastName = e.LastName;
-                        if (e.Salary.HasValue)
-                        {
-                            vm.Salary = e.Salary.ToString();
-                        }
-                        else
-                        {
-                            vm.Salary = ModelState["Salary"].Value.AttemptedValue;
-                        }
-                        return View("CreateEmployee", vm); // Day 4 Change - Passing e here
-                    }
-                case "Cancel":
-                    return RedirectToAction("Index");
-            }
-            return new EmptyResult();
-        }
 
 
         [ChildActionOnly]
@@ -106,6 +69,52 @@ namespace WebApplicationTest.Controllers
             {
                 return new EmptyResult();
             }
+        }
+
+        public ActionResult Search()
+        {
+            string val = Request.Form["Event"];
+            EmployeeListViewSearchModel employeeListSearchViewModel =
+                     new EmployeeListViewSearchModel();
+
+            EmployeeBusinessLayer empBal =
+                     new EmployeeBusinessLayer();
+            List<Employee> employees = empBal.GetEmployees();
+
+            List<EmployeeViewModel> empViewModels =
+                     new List<EmployeeViewModel>();
+            employeeListSearchViewModel.UserName = User.Identity.Name;
+            employeeListSearchViewModel.totalCount = employees.Count();
+            var eply = from m in employees
+                            select m;
+
+            System.Diagnostics.Debug.WriteLine("here");
+            foreach (var item in eply)
+            {
+                System.Diagnostics.Debug.WriteLine(item.event1.Equals(val));
+            }
+
+            System.Diagnostics.Debug.WriteLine("test");
+            System.Diagnostics.Debug.WriteLine(val);
+            System.Diagnostics.Debug.WriteLine("value above");
+            var em = eply.Where(s => s.event1.Equals(val));
+            employeeListSearchViewModel.curCount = em.Count();
+            foreach (Employee emp in em)
+            {
+                EmployeeViewModel empViewModel =
+                      new EmployeeViewModel();
+                empViewModel.Id = emp.Id;
+                empViewModel.email = emp.email;
+                empViewModel.event1 = emp.event1;
+                empViewModel.timestamp = emp.timestamp;
+                empViewModels.Add(empViewModel);
+            }
+            employeeListSearchViewModel.event1 = val;
+            employeeListSearchViewModel.Employees = empViewModels;
+            employeeListSearchViewModel.FooterData = new FooterViewModel();
+            employeeListSearchViewModel.FooterData.CompanyName = "DYD Creative Solution";//Can be set to dynamic value
+            employeeListSearchViewModel.FooterData.Year = DateTime.Now.Year.ToString();
+            return View("Search", employeeListSearchViewModel);
         }
     }
 }

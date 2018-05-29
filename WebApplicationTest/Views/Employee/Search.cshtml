@@ -1,0 +1,52 @@
+﻿@using WebApplicationTest.ViewModels
+@model EmployeeListViewSearchModel
+
+@{
+    Layout = "~/Views/Shared/MyLayout.cshtml";
+}
+
+
+@section TitleSection{
+    Search
+}
+
+@section ContentBody{
+    <div class="container text-center">
+        @{
+            Html.RenderAction("GetAddNewLink");
+        }
+
+        <div class="form-group">
+            <form action="/Employee/Search" method="post">
+                <select name="Event">
+                    <option value="deferred">deferred</option>
+                    <option value="processed">processed</option>
+                    <option value="delivered">delivered</option>
+                    <option value="open">open</option>
+                    <option value="click">click</option>
+                </select>
+
+                <input type="submit" name="BtnSubmit" class="btn btn-primary" value="Submit" />
+            </form>
+        </div>
+        <h3>There are @Model.curCount out of @Model.totalCount Emails that are @Model.event1</h3>
+        <table border="1">
+            <tr>
+                <th>Id</th>
+                <th>Email</th>
+                <th>Event1</th>
+                <th>timeStamp</th>
+            </tr>
+            @foreach (EmployeeViewModel item in Model.Employees)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.email</td>
+                    <td>@item.event1</td>
+                    <td>@item.timestamp</td>
+                </tr>
+            }
+        </table>
+
+    </div>
+}

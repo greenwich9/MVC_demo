@@ -5,11 +5,10 @@ using System.Web;
 
 namespace WebApplicationTest.ViewModels
 {
-    public class EmployeeViewModel
+    public class EmployeeListViewSearchModel : EmployeeListViewModel
     {
-        public string Id { get; set; }
-        public string email { get; set; }
-        public string timestamp { get; set; }
+        public int curCount { get; set; }
+        public int totalCount { get; set; }
         public string event1 { get; set; }
     }
 }

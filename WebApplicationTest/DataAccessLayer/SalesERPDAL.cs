@@ -15,7 +15,7 @@ namespace WebApplicationTest.DataAccessLayer
         public DbSet<Employee> Employees { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Employee>().ToTable("TblEmployee");
+            modelBuilder.Entity<Employee>().ToTable("newsletter_log");
             base.OnModelCreating(modelBuilder);
         }
     }
