@@ -12,40 +12,344 @@
 
 @section ContentBody{
 <div>
-    @{
-        Html.RenderAction("GetAddNewLink");
-    }
+    @*<a href="/BulkUpload/Index">BulkUpload</a>*@
 
-    <div>
-        <form action="/Employee/Search" method="post">
-            <select name="Event">
-                <option value="deferred">deferred</option>
-                <option value="processed">processed</option>
-                <option value="delivered">delivered</option>
-                <option value="open">open</option>
-                <option value="click">click</option>
-            </select>
+    <div class="right_col" role="main">
+        <div class="">
+            <div class="page-title">
+                <div class="title_left">
+                    <h3>Overview</h3>
+                </div>
 
-            <input type="submit" name="BtnSubmit" class="btn btn-primary" value="Submit" />
-        </form>
-    </div>
-        <table border="1">
-            <tr>
-                <th>Id</th>
-                <th>Email</th>
-                <th>Event1</th>
-                <th>timeStamp</th>
-            </tr>
-            @foreach (EmployeeViewModel item in Model.Employees)
-            {
-            <tr>
-                <td>@item.Id</td>
-                <td>@item.email</td>
-                <td>@item.event1</td>
-                <td>@item.timestamp</td>
-            </tr>
-            }
-        </table>
+                <div class="title_right">
+                    <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search for...">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">Go!</button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-    </div>
-}
+            <div class="x_content">
+                <table class="" style="width:100%">
+
+                    <tr>
+                        <td>
+                            <canvas class="canvasDoughnut" height="140" width="140" style="margin: 15px 10px 10px 0"></canvas>
+                        </td>
+                        <td>
+                            <table class="tile_info" style="width:initial">
+                                <tr style="font-size:large">
+                                    <td>
+                                        <p><i class="fa fa-square blue"></i>Processed </p>
+                                    </td>
+                                    <td>@Model.processedCount</td>
+                                </tr>
+                                <tr style="font-size:large">
+                                    <td>
+                                        <p><i class="fa fa-square green"></i>Delivered </p>
+                                    </td>
+                                    <td>@Model.deliveredCount</td>
+                                </tr>
+                                <tr style="font-size:large">
+                                    <td>
+                                        <p><i class="fa fa-square purple"></i>Deferred </p>
+                                    </td>
+                                    <td>@Model.deferredCount</td>
+                                </tr>
+                                <tr style="font-size:large">
+                                    <td>
+                                        <p><i class="fa fa-square aero"></i>Open </p>
+                                    </td>
+                                    <td>@Model.openCount</td>
+                                </tr>
+                                <tr style="font-size:large">
+                                    <td>
+                                        <p><i class="fa fa-square red"></i>Clicks </p>
+                                    </td>
+                                    <td>@Model.clickCount</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <table border="0" width="1000">
+
+                <tr style="font-size:xx-large; text-align:center">
+                    <td> @Model.processedCount</td>
+                    <td> @Model.deliveredCount</td>
+                    <td> @Model.deferredCount</td>
+                    <td> @Model.openCount</td>
+                    <td> @Model.clickCount</td>
+                </tr>
+
+                <tr style="text-align:center; font-size:large">
+                    <td> Processed</td>
+                    <td> Delivered</td>
+                    <td> Deferred</td>
+                    <td> Open</td>
+                    <td> Clicks</td>
+                </tr>
+
+            </table>
+
+
+            <div class="title" style="background-color:lightskyblue"><h4>Open   &nbsp;&nbsp;&nbsp;   @Model.uniqueUser Unique users</h4></div>
+            <div>
+                <table border="1" width="300">
+                    <tr>
+                        <th>Date</th>
+                        <th>TotalOpen</th>
+                    </tr>
+                    @foreach (var kvp in @Model.dateCount)
+                    {
+                        <tr>
+                            <td>@kvp.date</td>
+                            <td>@kvp.count</td>
+                        </tr>
+                    }
+                </table>
+            </div>
+
+            <div class="title" style="background-color:lightskyblue"><h4>Clicks   &nbsp;&nbsp;&nbsp;   @Model.uniqueClickUser unique Users</h4></div>
+
+            <div>
+                <table class="table table-striped">
+                    <tr>
+                        <th>Page URL</th>
+                        <th>Clicks</th>
+                    </tr>
+                    @foreach (var kvp in @Model.urlCount)
+                    {
+                        <tr>
+                            <td>@kvp.url</td>
+                            <td>@kvp.count</td>
+                        </tr>
+                    }
+                </table>
+            </div>
+            <div class="row" style="display:table-cell">
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="x_panel">
+                    <h3>America</h3>
+                    <div>
+                        <table border="1">
+                            <tr>
+                                <th>Country</th>
+                                <th>Open Count</th>
+                            </tr>
+                            @foreach (var kvp in @Model.america)
+                            {
+                                <tr>
+                                    <td>@kvp.country</td>
+                                    <td>@kvp.count</td>
+                                </tr>
+                            }
+                        </table>
+                    </div>
+
+                    <h3>Europe</h3>
+                    <div>
+                        <table border="1">
+                            <tr>
+                                <th>Country</th>
+                                <th>Open Count</th>
+                            </tr>
+                            @foreach (var kvp in @Model.europe)
+                            {
+                                <tr>
+                                    <td>@kvp.country</td>
+                                    <td>@kvp.count</td>
+                                </tr>
+                            }
+                        </table>
+                    </div>
+
+                    <h3>AsianPacific</h3>
+                    <div>
+                        <table border="1">
+                            <tr>
+                                <th>Country</th>
+                                <th>Open Count</th>
+                            </tr>
+                            @foreach (var kvp in @Model.asianPacific)
+                            {
+                                <tr>
+                                    <td>@kvp.country</td>
+                                    <td>@kvp.count</td>
+                                </tr>
+                            }
+                        </table>
+                    </div>
+                   </div>
+                </div>
+
+
+                    <div>
+
+
+
+
+                        <form action="/Employee/Search" method="post">
+                            <select name="Event">
+                                <option value="deferred">deferred</option>
+                                <option value="processed">processed</option>
+                                <option value="delivered">delivered</option>
+                                <option value="open">open</option>
+                                <option value="click">click</option>
+                            </select>
+
+                            <input type="submit" name="BtnSubmit" class="btn btn-primary" value="Submit" />
+                        </form>
+                    </div>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-8 col-12">
+                                <h3>
+                                    Deferred : @Model.deferredCount, Processed : @Model.processedCount Delivered : @Model.deliveredCount
+                                    Open : @Model.openCount Click :@Model.clickCount
+                                </h3>
+                                <br />
+                                <h3>Distinct user : @Model.uniqueUser</h3>
+                            </div>
+                            <div class="title">Email Information</div>
+                            <ul class="details">
+                                <li>
+                                    <span class="mdi mdi-email-outline"> Delivered : @Model.deliveredCount</span>
+                                    <span class="mdi mdi-eye"> Open : @Model.openCount</span>
+                                    <span class="mdi mdi-cursor-pointer"> Click :@Model.clickCount</span>
+                                </li>
+                                <li>
+                                    <span class="mdi mdi-telegram">27/03/18 - 07:00</span>
+                                </li>
+                                <li>
+                                    <span class="mdi mdi-calendar-clock">27/03/18 - 12:00</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <table border="1">
+                                <tr>
+                                    <th>Date</th>
+                                    <th>TotalOpen</th>
+                                </tr>
+                                @foreach (var kvp in @Model.dateCount)
+                                {
+                                    <tr>
+                                        <td>@kvp.date</td>
+                                        <td>@kvp.count</td>
+                                    </tr>
+                                }
+                            </table>
+                        </div>
+                        <div>
+                            <h3>Clicks    @Model.uniqueClickUser unique Users</h3>
+                        </div>
+                        <div>
+                            <table border="1">
+                                <tr>
+                                    <th>Page URL</th>
+                                    <th>Clicks</th>
+                                </tr>
+                                @foreach (var kvp in @Model.urlCount)
+                                {
+                                    <tr>
+                                        <td>@kvp.url</td>
+                                        <td>@kvp.count</td>
+                                    </tr>
+                                }
+                            </table>
+                        </div>
+                        <div>
+                            <table border="1">
+                                <tr>
+                                    <th>Region Code</th>
+                                    <th>Open Count</th>
+                                </tr>
+                                @foreach (var kvp in @Model.regionCodeCount)
+                                {
+                                    <tr>
+                                        <td>@kvp.regionCode</td>
+                                        <td>@kvp.count</td>
+                                    </tr>
+                                }
+                            </table>
+                        </div>
+
+                        <h3>America</h3>
+                        <div>
+                            <table border="1">
+                                <tr>
+                                    <th>Country</th>
+                                    <th>Open Count</th>
+                                </tr>
+                                @foreach (var kvp in @Model.america)
+                                {
+                                    <tr>
+                                        <td>@kvp.country</td>
+                                        <td>@kvp.count</td>
+                                    </tr>
+                                }
+                            </table>
+                        </div>
+
+                        <h3>Europe</h3>
+                        <div>
+                            <table border="1">
+                                <tr>
+                                    <th>Country</th>
+                                    <th>Open Count</th>
+                                </tr>
+                                @foreach (var kvp in @Model.europe)
+                                {
+                                    <tr>
+                                        <td>@kvp.country</td>
+                                        <td>@kvp.count</td>
+                                    </tr>
+                                }
+                            </table>
+                        </div>
+
+                        <h3>AsianPacific</h3>
+                        <div>
+                            <table border="1">
+                                <tr>
+                                    <th>Country</th>
+                                    <th>Open Count</th>
+                                </tr>
+                                @foreach (var kvp in @Model.asianPacific)
+                                {
+                                    <tr>
+                                        <td>@kvp.country</td>
+                                        <td>@kvp.count</td>
+                                    </tr>
+                                }
+                            </table>
+                        </div>
+                        @*   <table border="1">
+                    <tr>
+                        <th>Id</th>
+                        <th>Email</th>
+                        <th>Event1</th>
+                        <th>timeStamp</th>
+                    </tr>
+                    @foreach (EmployeeViewModel item in Model.Employees)
+                    {
+                        <tr>
+                            <td>@item.Id</td>
+                            <td>@item.email</td>
+                            <td>@item.event1</td>
+                            <td>@item.timestamp</td>
+                        </tr>
+                    }
+                </table>
+                        *@
+                    </div>
+                </div>
+            </div>
+        }

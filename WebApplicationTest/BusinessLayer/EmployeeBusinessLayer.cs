@@ -16,6 +16,13 @@ namespace WebApplicationTest.BusinessLayer
             return salesDal.Employees.ToList();
         }
 
+        public List<AreaModel> GetAreaInfo()
+        {
+            System.Diagnostics.Debug.WriteLine("here333");
+            SalesERPDAL salesDal = new SalesERPDAL();
+            return salesDal.AreaInfo.ToList();
+        }
+
         public Employee SaveEmployee(Employee e)
         {
             SalesERPDAL saleERP = new SalesERPDAL();
@@ -38,6 +45,27 @@ namespace WebApplicationTest.BusinessLayer
             {
                 return UserStatus.NonAuthenticatedUser;
             }
+        }
+
+        public void UploadEmployees(List<Employee> employees)
+        {
+            SalesERPDAL salesDal = new SalesERPDAL();
+            salesDal.Employees.AddRange(employees);
+            salesDal.SaveChanges();
+        }
+
+        public void UploadEmployeesInfo(List<AreaModel> employeesInfo)
+        {
+            SalesERPDAL salesDal = new SalesERPDAL();
+            salesDal.AreaInfo.AddRange(employeesInfo);
+            salesDal.SaveChanges();
+        }
+
+        public void UploadEmployeesRegionInfo(List<AreaModel> areaInfo)
+        {
+            SalesERPDAL salesDal = new SalesERPDAL();
+            salesDal.AreaInfo.AddRange(areaInfo);
+            salesDal.SaveChanges();
         }
     }
 }

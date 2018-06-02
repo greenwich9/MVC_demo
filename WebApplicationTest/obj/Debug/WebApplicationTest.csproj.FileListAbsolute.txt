@@ -86,7 +86,6 @@ C:\Users\fafa\source\repos\WebApplicationTest\WebApplicationTest\bin\Microsoft.A
 C:\Users\fafa\source\repos\WebApplicationTest\WebApplicationTest\bin\Microsoft.AI.WindowsServer.xml
 C:\Users\fafa\source\repos\WebApplicationTest\WebApplicationTest\bin\Microsoft.AI.Web.xml
 C:\Users\fafa\source\repos\WebApplicationTest\WebApplicationTest\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\fafa\source\repos\WebApplicationTest\WebApplicationTest\obj\Debug\WebApplicationTest.csprojAssemblyReference.cache
 C:\Users\fafa\source\repos\WebApplicationTest\WebApplicationTest\obj\Debug\WebApplicationTest.csproj.CoreCompileInputs.cache
 C:\Users\fafa\source\repos\WebApplicationTest\WebApplicationTest\obj\Debug\WebApplicationTest.csproj.CopyComplete
 C:\Users\fafa\source\repos\WebApplicationTest\WebApplicationTest\obj\Debug\WebApplicationTest.dll
@@ -95,3 +94,4 @@ C:\Users\fafa\source\repos\WebApplicationTest\WebApplicationTest\bin\EntityFrame
 C:\Users\fafa\source\repos\WebApplicationTest\WebApplicationTest\bin\EntityFramework.SqlServer.dll
 C:\Users\fafa\source\repos\WebApplicationTest\WebApplicationTest\bin\EntityFramework.xml
 C:\Users\fafa\source\repos\WebApplicationTest\WebApplicationTest\bin\EntityFramework.SqlServer.xml
+C:\Users\fafa\source\repos\WebApplicationTest\WebApplicationTest\obj\Debug\WebApplicationTest.csprojAssemblyReference.cache

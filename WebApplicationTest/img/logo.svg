@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="453px" height="394px" viewBox="0 0 453 394" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.3 (51167) - http://www.bohemiancoding.com/sketch -->
+    <title>Group</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="27.2775424%" y1="22.5444674%" x2="54.7542594%" y2="56.188581%" id="linearGradient-1">
+            <stop stop-color="#000000" stop-opacity="0.363734149" offset="0%"></stop>
+            <stop stop-color="#000000" stop-opacity="0" offset="100%"></stop>
+        </linearGradient>
+        <filter x="-6.8%" y="-6.9%" width="113.7%" height="113.9%" filterUnits="objectBoundingBox" id="filter-2">
+            <feGaussianBlur stdDeviation="7.67020089" in="SourceGraphic"></feGaussianBlur>
+        </filter>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="logos/logo-symbol">
+            <g id="Group">
+                <polygon id="Path-2" fill="url(#linearGradient-1)" opacity="0.5" filter="url(#filter-2)" points="102 333.589985 175.30226 423 439 423 439 187.050314 439 107 310.869761 91 213.505794 156.923843 155.720779 232.211762"></polygon>
+                <g id="Group-2">
+                    <polygon id="Triangle-1" fill="#E3E8EE" points="144.379938 180.771256 321.604044 181.718852 193.84724 264.139443"></polygon>
+                    <polygon id="Triangle-1" fill="#FFFFFF" points="232.599752 53.3967274 321.631455 181.712629 144.423145 180.771651"></polygon>
+                    <polygon id="Triangle-1" fill="#FFFFFF" points="397.413361 61.8414369 438.345167 106.781806 368.996512 106.781806"></polygon>
+                    <polygon id="Triangle-1" fill="#C1C9D1" points="66.5384044 53.6736842 144.468413 180.787486 0.443951985 54.3333077"></polygon>
+                    <polygon id="Triangle-1" fill="#C1C9D1" points="273.919224 113.337868 397.451668 61.8259503 321.628306 181.708231"></polygon>
+                    <polygon id="Triangle-1" fill="#FFFFFF" points="144.423145 180.771651 193.836123 264.1273 103.529647 377.453518"></polygon>
+                    <polygon id="Triangle-1" fill="#E3E8EE" points="33.6699196 0.0116491304 232.604932 53.3911167 144.435716 180.761326"></polygon>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

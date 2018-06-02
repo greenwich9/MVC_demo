@@ -14,10 +14,12 @@ namespace WebApplicationTest.Models
 
         public string event1 { get; set; }
 
+        public string DateInclude { get; set; }
  
         public string timestamp { get; set; }
       
         public string email { get; set; }
-      
+
+        public string url { get; set; }
     }
 }
